@@ -78,7 +78,7 @@
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-test</artifactId>
-		    <version>4.3.9.RELEASE</version>
+		    <version>${spring.version}</version>
 		    <scope>test</scope>
 		</dependency>
         
@@ -190,7 +190,28 @@
 		        </exclusion>
 		    </exclusions>
 		</dependency>
-        
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-java</artifactId>
+		    <version>3.5.2</version>
+		</dependency>
+        <dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-server</artifactId>
+		    <version>3.5.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>joda-time</groupId>
+		    <artifactId>joda-time</artifactId>
+		    <version>2.9.9</version>
+		</dependency>
+		
+		<dependency>
+    <groupId>org.apache.solr</groupId>
+    <artifactId>solr-core</artifactId>
+    <version>6.1.0</version>
+</dependency>
     </dependencies>
     
     
