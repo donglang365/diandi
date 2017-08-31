@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.june.dao.PostDao">  
+  <resultMap id="postMap" type="com.june.bean.PostVO">   
+     <id property="postId" column="postId" />  
+     <result property="userId" column="userId"/>
+     <result property="postId" column="postId" />  
+     <result property="imgUrl" column="imgUrl" />  
+     <result property="content" column="content" />  
+     <result property="shortContent" column="shortContent" />  
+     <result property="createTime" column="createTime" />  
+     <result property="title" column="title" />  
+     <result property="viewCount" column="viewCount" />  
+     <result property="commentCount" column="commentCount" />  
+     <result property="supportCount" column="supportCount" />  
+     <result property="kind" column="kind" />  
+     <result property="system" column="system" /> 
+     <result property="nickname" column="nickName" />  
+     <result property="logoFileName" column="logoFileName" />  
+     <collection property="imgUrlList" ofType="com.june.bean.ImageVO" >    
+    	 <id property="imgId" column="imgId"/> 
+         <result column="imgUrls" property="url"/>    
+     </collection>    
+  </resultMap> 
+	
+	
+  <sql id="columns">
+  	postId,
+  	imgUrl,
+  	content,
+  	shortContent,
+  	createTime,
+  	title,
+  	viewCount,
+  	commentCount,
+  	supportCount,
+  	kind
+  </sql>
+  <select id="getPosts" resultMap="postMap">
+	SELECT
+		p.userId,
+		p.postId,
+		p.imgUrl,
+		p.content,
+		p.shortContent,
+		p.createTime,
+		p.title,
+		p.viewCount,
+		p.commentCount,
+		p.supportCount,
+		p.kind,
+		m.system,
+		u.nick_name as nickName,
+		u.logo_filename as logoFileName,
+		i.imgUrl as imgUrls,
+		i.imgId
+	FROM
+		post p
+	LEFT JOIN post_system_map m ON p.postId = m.postId
+	LEFT JOIN user_info u ON p.userId = u.id
+	LEFT JOIN image i on i.postId = p.postId
+<!-- 	limit 10 -->
+  </select>
+</mapper>
